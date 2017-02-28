@@ -1,0 +1,21 @@
+{
+  "name": "allex_dboperationslib",
+  "version": "1.0.0",
+  "description": "AllexJS utility lib for dboperations Services",
+  "main": "index.js",
+  "scripts": {
+    "test": "allex-mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.hers.rs:allex_libs/dboperations.git"
+  },
+  "keywords": [
+    "ecosystem:AllexJS",
+    "db",
+    "operations",
+    "lib"
+  ],
+  "author": "HERS Belgrade",
+  "license": "ISC"
+}
