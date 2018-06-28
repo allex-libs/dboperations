@@ -1,7 +1,9 @@
 function createServerSideHelpers (execlib) {
   'use strict';
 
-  var lib = execlib.lib;
+  var lib = execlib.lib,
+    execSuite = execlib.execSuite,
+    taskRegistry = execSuite.taskRegistry;
 
   /*
   function copy (src, dest, fields) {
@@ -46,9 +48,26 @@ function createServerSideHelpers (execlib) {
     );
   }
 
+  function singleRecordFetcherFromSinkByFieldValue (fieldname) {
+    return function (sink, fieldval, defer) {
+      taskRegistry.run('readFromDataSink', {
+        sink: sink,
+        filter: {
+          op: 'eq',
+          field: fieldname,
+          value: fieldval
+        },
+        singleshot: true,
+        cb: defer.resolve.bind(defer),
+        errorcb: defer.reject.bind(defer)
+      });
+    };
+  };
+
   return {
     copy: copy,
-    dbResolverFetchMethodTemplate
+    dbResolverFetchMethodTemplate: dbResolverFetchMethodTemplate,
+    singleRecordFetcherFromSinkByFieldValue: singleRecordFetcherFromSinkByFieldValue
   };
 
 }
